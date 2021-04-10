@@ -38,7 +38,7 @@ fun Canvas.drawBouncyBallWall(scale : Float, w : Float, h : Float, paint : Paint
     save()
     translate(w / 2,h / 2)
     save()
-    translate(-w / 2 + r + (w / 2 - r) * sf2, 0f)
+    translate(-w / 2 + r + (w / 2 + r / 10 - 2 * r) * sf2, 0f)
     drawCircle(0f, 0f, r * sf1, paint)
     restore()
     drawRect(RectF(w / 2 - w * 0.5f * sf2, -h / 2, w / 2, h / 2), paint)
@@ -48,6 +48,7 @@ fun Canvas.drawBouncyBallWall(scale : Float, w : Float, h : Float, paint : Paint
 fun Canvas.drawBBWNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
+    paint.color = colors[i]
     drawBouncyBallWall(scale, w, h, paint)
 }
 
@@ -198,7 +199,7 @@ class BouncyBallWallView(ctx : Context) : View(ctx) {
 
         fun handleTap() {
             bbw.startUpdating {
-                animator.stop()
+                animator.start()
             }
         }
     }
