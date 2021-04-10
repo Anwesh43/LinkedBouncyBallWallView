@@ -177,4 +177,27 @@ class BouncyBallWallView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BouncyBallWallView) {
+
+        private val animator : Animator = Animator(view)
+        private val bbw : BouncyBallWall = BouncyBallWall(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbw.draw(canvas, paint)
+            animator.animate {
+                bbw.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbw.startUpdating {
+                animator.stop()
+            }
+        }
+    }
 }
