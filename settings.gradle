@@ -1,0 +1,3 @@
+include ':bouncyballwallview'
+include ':app'
+rootProject.name = "LinkedBouncyBallWallView"
