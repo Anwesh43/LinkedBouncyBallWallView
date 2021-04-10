@@ -202,4 +202,13 @@ class BouncyBallWallView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BouncyBallWallView {
+            val view : BouncyBallWallView = BouncyBallWallView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
